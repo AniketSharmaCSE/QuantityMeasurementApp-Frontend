@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "name": "Aniket Sharma",
+      "email": "29aniket2004@gmail.com",
+      "username": "Ani",
+      "createdAt": "2026-03-29T11:53:59.574Z",
+      "id": "z15Isc7jpro"
+    },
+    {
+      "name": "Aniket Sharma",
+      "email": "29aniket2004@gmail.com",
+      "username": "Anii",
+      "createdAt": "2026-03-31T09:24:15.094Z",
+      "id": "ggDnTVeTE4Y"
+    },
+    {
+      "name": "Aniket Sharma",
+      "email": "29aniket2003@gmail.com",
+      "username": "Anii2",
+      "createdAt": "2026-03-31T09:27:15.991Z",
+      "id": "3UhCpLUtwoY"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
