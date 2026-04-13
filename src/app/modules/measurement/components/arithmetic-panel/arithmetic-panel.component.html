@@ -1,0 +1,47 @@
+<div class="input-panel active">
+  <div class="arith-row">
+
+    <div class="input-group">
+      <div class="section-label">Value 1</div>
+      <input class="value-input" type="number" [(ngModel)]="value1" step="any"/>
+      <select class="unit-select" [(ngModel)]="unit1">
+        <option *ngFor="let u of units" [value]="u">{{ u }}</option>
+      </select>
+    </div>
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding-bottom:10px">
+      <div class="op-badge">{{ opBadges[operation] }}</div>
+    </div>
+
+    <div class="input-group">
+      <div class="section-label">Value 2</div>
+      <input class="value-input" type="number" [(ngModel)]="value2" step="any"/>
+      <select class="unit-select" [(ngModel)]="unit2">
+        <option *ngFor="let u of units" [value]="u">{{ u }}</option>
+      </select>
+    </div>
+
+  </div>
+
+  <!-- Operation selector + optional target unit -->
+  <div class="arith-target">
+    <label>Operation:</label>
+    <select class="unit-select" [(ngModel)]="operation" style="width:auto;min-width:140px">
+      <option *ngFor="let op of operations" [value]="op">{{ op }}</option>
+    </select>
+
+    <ng-container *ngIf="showTargetUnit">
+      <label style="margin-left:12px">Result in:</label>
+      <select class="unit-select" [(ngModel)]="targetUnit" style="width:auto;min-width:140px">
+        <option *ngFor="let u of units" [value]="u">{{ u }}</option>
+      </select>
+    </ng-container>
+  </div>
+
+  <div class="execute-row" style="margin-top:20px">
+    <button class="btn-execute" [class.loading]="isLoading" (click)="onCalculate()">
+      <div class="spinner"></div>
+      <span class="btn-text">{{ isLoading ? 'Calculating...' : 'Calculate' }}</span>
+    </button>
+  </div>
+</div>

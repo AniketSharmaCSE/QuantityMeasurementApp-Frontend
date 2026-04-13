@@ -1,0 +1,15 @@
+<header class="app-header">
+  <span class="header-title" routerLink="/measure" style="cursor: pointer;">Quantity Measurement App</span>
+
+  <div class="header-user">
+    <!-- async pipe subscribes to currentUser$ and auto-unsubscribes -->
+    <ng-container *ngIf="currentUser$ | async as user; else guestTpl">
+      <span class="header-username">{{ user.username }}</span>
+      <button class="btn-logout" (click)="logout()">Logout</button>
+    </ng-container>
+
+    <ng-template #guestTpl>
+      <a routerLink="/auth/login" class="btn-logout" style="text-decoration:none">Login</a>
+    </ng-template>
+  </div>
+</header>

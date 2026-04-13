@@ -1,0 +1,32 @@
+<div class="input-panel active">
+  <div class="compare-grid">
+
+    <!-- Value 1 -->
+    <div class="input-group">
+      <div class="section-label">From</div>
+      <!-- [(ngModel)] is two-way binding: updates value1 as the user types -->
+      <input class="value-input" type="number" [(ngModel)]="value1" step="any"/>
+      <select class="unit-select" [(ngModel)]="unit1">
+        <option *ngFor="let u of units" [value]="u">{{ u }}</option>
+      </select>
+    </div>
+
+    <!-- Value 2 -->
+    <div class="input-group">
+      <div class="section-label">To</div>
+      <input class="value-input" type="number" [(ngModel)]="value2" step="any"/>
+      <select class="unit-select" [(ngModel)]="unit2">
+        <option *ngFor="let u of units" [value]="u">{{ u }}</option>
+      </select>
+    </div>
+
+  </div>
+
+  <!-- Execute button lives here so each panel controls its own button -->
+  <div class="execute-row" style="margin-top:20px">
+    <button class="btn-execute" [class.loading]="isLoading" (click)="onCalculate()">
+      <div class="spinner"></div>
+      <span class="btn-text">{{ isLoading ? 'Calculating...' : 'Calculate' }}</span>
+    </button>
+  </div>
+</div>

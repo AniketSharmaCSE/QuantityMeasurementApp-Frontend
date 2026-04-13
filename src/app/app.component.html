@@ -1,0 +1,10 @@
+<!-- Root shell: header is always visible, router-outlet swaps the page content -->
+<div id="app-screen">
+  <app-header></app-header>
+
+  <!-- Angular injects the active route's component here -->
+  <router-outlet></router-outlet>
+
+  <!-- Global toast notification, always mounted -->
+  <app-notification></app-notification>
+</div>

@@ -1,0 +1,9 @@
+<!-- *ngIf hides the box until there's a result or error -->
+<div class="result-box"
+     *ngIf="isVisible"
+     [class.visible]="isVisible"
+     [class.error]="isError">
+  <div class="result-label">Result</div>
+  <div class="result-value" [style.color]="valueColor">{{ displayValue }}</div>
+  <div class="result-meta" *ngIf="!isError">{{ displayMeta }}</div>
+</div>

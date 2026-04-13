@@ -1,0 +1,12 @@
+{
+  "/api": {
+    "target": "https://localhost:5000",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/signin-google": {
+    "target": "https://localhost:5000",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

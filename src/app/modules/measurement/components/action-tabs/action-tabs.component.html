@@ -1,0 +1,27 @@
+<div class="action-section">
+  <div class="section-label">Choose Action</div>
+  <div class="action-tabs">
+
+    <button class="action-tab"
+            [class.active]="currentAction === 'compare'"
+            (click)="select('compare')">
+      Comparison
+    </button>
+
+    <button class="action-tab"
+            [class.active]="currentAction === 'convert'"
+            (click)="select('convert')">
+      Conversion
+    </button>
+
+    <!-- Arithmetic is disabled for Temperature -->
+    <button class="action-tab"
+            [class.active]="currentAction === 'arith'"
+            [style.opacity]="isTemperature ? '0.4' : '1'"
+            [style.pointerEvents]="isTemperature ? 'none' : 'auto'"
+            (click)="select('arith')">
+      Arithmetic
+    </button>
+
+  </div>
+</div>

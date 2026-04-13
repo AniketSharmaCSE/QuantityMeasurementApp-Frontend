@@ -1,0 +1,33 @@
+<div class="input-panel active">
+  <div class="convert-row">
+
+    <div class="input-group">
+      <div class="section-label">Value</div>
+      <input class="value-input" type="number" [(ngModel)]="value" step="any"/>
+      <select class="unit-select" [(ngModel)]="fromUnit">
+        <option *ngFor="let u of units" [value]="u">{{ u }}</option>
+      </select>
+    </div>
+
+    <div class="convert-arrow">→</div>
+
+    <div class="input-group">
+      <div class="section-label">Result</div>
+      <!-- Read-only display of the converted value from the last API response -->
+      <div class="value-input" style="cursor:default; color:var(--primary)">
+        {{ convertedDisplay }}
+      </div>
+      <select class="unit-select" [(ngModel)]="toUnit">
+        <option *ngFor="let u of units" [value]="u">{{ u }}</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="execute-row" style="margin-top:20px">
+    <button class="btn-execute" [class.loading]="isLoading" (click)="onCalculate()">
+      <div class="spinner"></div>
+      <span class="btn-text">{{ isLoading ? 'Converting...' : 'Convert' }}</span>
+    </button>
+  </div>
+</div>

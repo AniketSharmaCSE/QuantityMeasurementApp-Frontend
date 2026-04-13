@@ -1,0 +1,47 @@
+<div class="history-section">
+  <div class="history-header">
+    <div class="section-label" style="margin-bottom:0">Recent History</div>
+    <div>
+      <button style="margin-right:8px;background:var(--primary);color:white;border:none;border-radius:6px;padding:6px 12px;cursor:pointer;font-size:13px;font-weight:600"
+              (click)="refresh()">
+        Refresh
+      </button>
+      <button class="btn-clear" (click)="clearAll()">Clear All</button>
+    </div>
+  </div>
+
+  <!-- async pipe auto-subscribes to history$ Observable -->
+  <div class="history-list">
+    <ng-container *ngIf="history$ | async as items">
+
+      <!-- No history yet -->
+      <div *ngIf="items.length === 0 && isLoggedIn"
+           style="color:var(--muted);font-size:14px;text-align:center;padding:20px">
+        No records yet.
+      </div>
+
+      <!-- Guest: show login prompt -->
+      <div *ngIf="items.length === 0 && !isLoggedIn"
+           style="color:var(--muted);font-size:14px;text-align:center;padding:30px 20px">
+        <div style="font-size:28px;margin-bottom:10px">🔒</div>
+        <div style="font-weight:600;margin-bottom:6px;color:var(--text)">Login to view history</div>
+        <div style="margin-bottom:14px">Your calculation history is saved when you're logged in.</div>
+        <a routerLink="/auth/login"
+           style="background:var(--primary);color:#fff;border:none;border-radius:8px;padding:8px 20px;cursor:pointer;font-size:13px;font-weight:600;text-decoration:none;display:inline-block">
+          Login / Sign Up
+        </a>
+      </div>
+
+      <!-- History items -->
+      <div class="history-item" *ngFor="let item of items">
+        <span class="history-op">{{ item.operation }}</span>
+        <div style="flex:1;margin:0 14px">
+          <div class="history-detail">{{ getDetail(item) }}</div>
+          <div class="history-time">{{ getCategory(item) }} · {{ formatTime(item.timestamp) }}</div>
+        </div>
+        <span class="history-result">{{ getResult(item) }}</span>
+      </div>
+
+    </ng-container>
+  </div>
+</div>

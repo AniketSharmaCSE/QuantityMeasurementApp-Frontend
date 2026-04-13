@@ -1,0 +1,68 @@
+<main class="app-main">
+  <div class="app-card">
+
+    <!-- Type selector: Length / Weight / Volume / Temperature -->
+    <!-- (typeChange) listens for the EventEmitter output from TypeSelectorComponent -->
+    <app-type-selector
+      [currentType]="currentType"
+      (typeChange)="onTypeChange($event)">
+    </app-type-selector>
+
+    <!-- Compare / Convert / Arithmetic tabs -->
+    <app-action-tabs
+      [currentAction]="currentAction"
+      [isTemperature]="currentType === 'Temperature'"
+      (actionChange)="onActionChange($event)">
+    </app-action-tabs>
+
+    <!-- Show the correct input panel based on currentAction -->
+    <!-- Each panel emits (execute) with its request payload -->
+
+    <app-compare-panel
+      *ngIf="currentAction === 'compare'"
+      [currentType]="currentType"
+      [isLoading]="isLoading"
+      (execute)="onExecute($event)">
+    </app-compare-panel>
+
+    <app-convert-panel
+      *ngIf="currentAction === 'convert'"
+      [currentType]="currentType"
+      [isLoading]="isLoading"
+      [lastResult]="result"
+      (execute)="onExecute($event)">
+    </app-convert-panel>
+
+    <app-arithmetic-panel
+      *ngIf="currentAction === 'arith'"
+      [currentType]="currentType"
+      [isLoading]="isLoading"
+      (execute)="onExecute($event)">
+    </app-arithmetic-panel>
+
+    <div class="panel-divider"></div>
+
+    <!-- Result box — receives result data via @Input -->
+    <app-result-box
+      [result]="result"
+      [errorMessage]="resultError">
+    </app-result-box>
+
+  </div>
+
+  <!-- History section below the main card -->
+  <ng-container *ngIf="authService.currentUser$ | async; else loginPrompt">
+    <app-history-list></app-history-list>
+  </ng-container>
+
+  <ng-template #loginPrompt>
+    <div class="app-card login-prompt-card" style="text-align: center; margin-top: 1.5rem; padding: 2rem;">
+      <h3 style="margin-bottom: 0.5rem; font-weight: 600;">View Full History</h3>
+      <p style="margin-bottom: 1.5rem; opacity: 0.8;">Log in to save your conversions and see your full history across all devices.</p>
+      <button class="btn" routerLink="/auth/login" style="padding: 0.75rem 2rem; font-weight: 500; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(99, 102, 241, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+        Log In to View History
+      </button>
+    </div>
+  </ng-template>
+
+</main>

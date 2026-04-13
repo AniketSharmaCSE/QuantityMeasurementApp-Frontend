@@ -1,0 +1,13 @@
+<div class="type-grid">
+  <div class="section-label" style="grid-column:1/-1">Choose Type</div>
+
+  <!-- Loop through all types and apply 'active' class to the selected one -->
+  <div
+    class="type-card"
+    *ngFor="let t of types"
+    [class.active]="currentType === t.label"
+    (click)="select(t.label)">
+    <span class="type-icon">{{ t.icon }}</span>
+    <span class="type-name">{{ t.label }}</span>
+  </div>
+</div>
