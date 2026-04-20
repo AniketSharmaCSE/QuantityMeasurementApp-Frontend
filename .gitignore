@@ -1,3 +1,5 @@
 /dump
 bin/
 obj/
+.vercel
+node_modules/
